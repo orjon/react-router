@@ -1,26 +1,26 @@
 import React from 'react';
 import './App.scss';
-import Homepage from './Homepage';
+import Home from './Home';
 import Content from './Content';
 import About from './About';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, NavLink} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <nav className='App-nav'>
-        <a className='App-navItem'>homepage</a>
-        <a className='App-navItem'>content</a>
-        <a className='App-navItem'>about</a>
+        <NavLink exact activeClassName='activeLink' to='/' className='App-navItem'>home</NavLink>
+        <NavLink exact activeClassName='activeLink' to='/content' className='App-navItem'>content</NavLink>
+        <NavLink exact activeClassName='activeLink' to='/about' className='App-navItem'>about</NavLink>
       </nav>
       <div className='wrapper'>
         <Switch>
-          {/* Switch insures only one route is displayed. Matches with first match */}
-          <Route exact path='/' component={Homepage}/>
-          {/* put '/' route at the end!! or use EXACT */}
+          <Route exact path='/' component={Home}/>
           <Route exact path='/content' component={Content}/>
           <Route exact path='/about' component={About}/> 
         </Switch>
+        {/* Switch insures only one route is displayed. Matches with first match */}
+        {/* put '/' route at the end!! or use EXACT */}
         {/* Genreally good idea to use Swtich and exact */}
       </div>
     </div>
