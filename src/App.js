@@ -16,7 +16,7 @@ function App() {
       <div className='wrapper'>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route exact path='/content' component={() => <Content someContent='nice Content!'/>}/>
+          <Route exact path='/content' render={() => <Content someContent='nice Content!'/>}/>
           <Route exact path='/about' component={About}/> 
         </Switch>
         {/* Switch insures only one route is displayed. Matches with first match */}
