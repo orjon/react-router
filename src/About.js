@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-import './About.scss'
+import './Page.scss'
 
 class About extends Component {
   render(){
     return(
-      <div className='About'>/about</div>
+      <div className='About Page'>
+        <div className='header'>
+          <h4>/about</h4>
+        </div>
+        <div className='main'>
+          <p>about page</p>
+        </div>
+      </div>
     )
   }
 }

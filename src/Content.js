@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import './Content.scss'
+import './Page.scss'
 
 class Content extends Component {
   render(){
     return(
-      <div className='Content'>/content</div>
+      <div className='Content Page'>
+        <div className='header'>
+          <h4>/content</h4>
+        </div>
+        <div className='main'>
+          <p>The content here is: {this.props.someContent}</p>
+        </div>
+      </div>
     )
   }
 }
