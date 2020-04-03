@@ -7,6 +7,7 @@ class About extends Component {
     name: '(try adding a name to path)'
   }
   render(){
+    const name = this.props.match.params.name || this.props.name
     return(
       <div className='About Page'>
         <div className='header'>
@@ -14,7 +15,7 @@ class About extends Component {
         </div>
         <div className='main'>
           <Message>
-            <p>about: {this.props.name}</p>
+            <p>about: {name}</p>
           </Message>
         </div>
       </div>

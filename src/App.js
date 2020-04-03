@@ -18,7 +18,8 @@ function App() {
           <Route exact path='/' component={Home}/>
           <Route exact path='/content' render={() => <Content someContent='nice Content!'/>}/>
           <Route exact path='/about' component={About}/>
-          <Route exact path='/about/:name' render={(routeProps) => <About name={routeProps.match.params.name}/>}/> 
+          <Route exact path='/about/:name' render={(routeProps) => <About {...routeProps}/>}/> 
+          <Route render={() => <h1>Error: NOT FOUND</h1>}/>
         </Switch>
         {/* Switch insures only one route is displayed. Matches with first match */}
         {/* put '/' route at the end!! or use EXACT */}
