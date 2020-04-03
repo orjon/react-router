@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './Page.scss'
+import './Page.scss';
+import Message from './Message';
+
 
 class Content extends Component {
   render(){
@@ -9,7 +11,9 @@ class Content extends Component {
           <h4>/content</h4>
         </div>
         <div className='main'>
-          <p>The content here is: {this.props.someContent}</p>
+          <Message>
+            <p>The content here is: {this.props.someContent}</p>
+          </Message>
         </div>
       </div>
     )

@@ -17,7 +17,8 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/content' render={() => <Content someContent='nice Content!'/>}/>
-          <Route exact path='/about' component={About}/> 
+          <Route exact path='/about' component={About}/>
+          <Route exact path='/about/:name' render={(routeProps) => <About name={routeProps.match.params.name}/>}/> 
         </Switch>
         {/* Switch insures only one route is displayed. Matches with first match */}
         {/* put '/' route at the end!! or use EXACT */}
