@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { Component } from 'react';
 import './NavBar.scss';
 import {withRouter, NavLink} from 'react-router-dom';
 
@@ -7,10 +7,10 @@ class NavBar extends Component {
     super(props);
     this.handleBack = this.handleBack.bind(this);
   }
-
   handleBack(){
     this.props.history.goBack();
   }
+
   render(){
     return(
       <nav className='App-nav'>

@@ -1,68 +1,107 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React-Router example
+## Experiments with React
 
-## Available Scripts
+Simple demo app using react-router.
 
-In the project directory, you can run:
+Default page found at `/`:
+![Screen shot](/screenshots/screenshot-home.png)
 
-### `yarn start`
+Content page `/content`:
+![Screen shot](/screenshots/screenshot-content.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+About page with pattern `/about/:name`:
+![Screen shot](/screenshots/screenshot-about.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+### NavBar
+With back button using: `this.props.history.goBack()`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+import React, { Component } from 'react';
+import './NavBar.scss';
+import {withRouter, NavLink} from 'react-router-dom';
 
-### `yarn build`
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.handleBack = this.handleBack.bind(this);
+  }
+  handleBack(){
+    this.props.history.goBack();
+  }
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  render(){
+    return(
+      <nav className='App-nav'>
+        <span className='App-navItem' onClick={this.handleBack}>←</span>
+        <NavLink exact activeClassName='activeLink' to='/' className='App-navItem'>home</NavLink>
+        <NavLink exact activeClassName='activeLink' to='/content' className='App-navItem'>content</NavLink>
+        <NavLink exact activeClassName='activeLink' to='/about' className='App-navItem'>about</NavLink>
+      </nav>
+    )
+  }
+}
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+export default withRouter(NavBar);
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Content
+Using content passed in as prop: `<Route exact path='/content' render={() => <Content someContent='nice Content!'/>}/>`
 
-### `yarn eject`
+```
+import React, { Component } from 'react';
+import './Page.scss';
+import Message from './Message';
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+class Content extends Component {
+  render(){
+    return(
+      <div className='Content Page'>
+        <div className='header'>
+          <h4>/content</h4>
+        </div>
+        <div className='main'>
+          <Message>
+            <p>The content here is: {this.props.someContent}</p>
+          </Message>
+        </div>
+      </div>
+    )
+  }
+}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export default Content;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### About
+Uses URL pattern/variable for content: `<Route exact path='/about/:name' render={(routeProps) => <About {...routeProps}/>}/> `
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+import React, { Component } from 'react';
+import './Page.scss';
+import Message from './Message';
 
-## Learn More
+class About extends Component {
+  static defaultProps ={
+    name: '(try adding a name to path)'
+  }
+  render(){
+    const name = this.props.match.params.name || this.props.name
+    return(
+      <div className='About Page'>
+        <div className='header'>
+          <h4>/about</h4>
+        </div>
+        <div className='main'>
+          <Message>
+            <p>about: {name}</p>
+          </Message>
+        </div>
+      </div>
+    )
+  }
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default About;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

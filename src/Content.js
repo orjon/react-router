@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Page.scss';
 import Message from './Message';
 
-
 class Content extends Component {
   render(){
     return(
